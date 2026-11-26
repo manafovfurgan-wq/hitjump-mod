@@ -28,7 +28,7 @@ dependencies {
     modImplementation "net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${project.fabric_version}"
 
     // Legacy Mod Menu (1.0.0+1.8.9) for config screen integration
-    modCompileOnly "maven.modrinth:XzTYkVLx:7qAtrqkG"
+    modCompileOnly "maven.modrinth:XzTYkVLx:r7PigOJk"
 }
 
 processResources {
