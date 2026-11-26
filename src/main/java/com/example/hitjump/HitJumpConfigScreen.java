@@ -80,7 +80,7 @@ public class HitJumpConfigScreen extends Screen {
                 break;
             case BTN_DONE:
                 HitJumpConfig.save();
-                this.client.openScreen(this.parent);
+                this.client.setScreen(this.parent);
                 break;
             default:
                 break;
