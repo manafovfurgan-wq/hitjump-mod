@@ -3,7 +3,6 @@ package com.example.hitjump;
 import net.fabricmc.api.ClientModInitializer;
 import net.legacyfabric.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 
 import java.util.Random;
 
@@ -29,14 +28,13 @@ public class HitJumpMod implements ClientModInitializer {
             return;
         }
 
-        ClientPlayerEntity player = client.player;
-        int currentHurtTime = player.hurtTime;
+        int currentHurtTime = client.player.hurtTime;
 
         // A spike in hurtTime indicates the player just received damage
         if (currentHurtTime > lastHurtTime && currentHurtTime > 0) {
             if (rollFrequency(config.jumpFrequency)) {
                 if (config.latencyTicks <= 0) {
-                    tryJump(player);
+                    tryJump(client);
                     pendingJumpTicks = -1;
                 } else {
                     pendingJumpTicks = config.latencyTicks;
@@ -49,7 +47,7 @@ public class HitJumpMod implements ClientModInitializer {
         if (pendingJumpTicks > 0) {
             pendingJumpTicks--;
             if (pendingJumpTicks == 0) {
-                tryJump(player);
+                tryJump(client);
                 pendingJumpTicks = -1;
             }
         }
@@ -61,9 +59,9 @@ public class HitJumpMod implements ClientModInitializer {
         return random.nextInt(100) < frequencyPercent;
     }
 
-    private void tryJump(ClientPlayerEntity player) {
-        if (player.onGround) {
-            player.jump();
+    private void tryJump(MinecraftClient client) {
+        if (client.player != null && client.player.onGround) {
+            client.player.jump();
         }
     }
 }
