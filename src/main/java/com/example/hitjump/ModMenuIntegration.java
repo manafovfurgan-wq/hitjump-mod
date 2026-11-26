@@ -5,7 +5,7 @@ import io.github.prospector.modmenu.api.ModMenuApi;
 
 public class ModMenuIntegration implements ModMenuApi {
     @Override
-    public ConfigScreenFactory<?> getModConfigScreenFactory() {
+    public ConfigScreenFactory<?> getConfigScreenFactory() {
         return HitJumpConfigScreen::new;
     }
 }
